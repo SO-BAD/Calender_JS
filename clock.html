@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #circle {
+            width: 401px;
+            height: 401px;
+            background-color: #fcc;
+            border-radius: 50%;
+            margin: 150px auto 0 auto;
+            border: 2px solid #ccc;
+            box-shadow: 10px 10px 20px rgb(0, 0, 0, 0.2);
+        }
+
+        #second {
+            width: 220px;
+            height: 5px;
+            background-color: red;
+            transform-origin: 20px 3px;
+            position: absolute;
+            top: 348px;
+            margin-left: 180px;
+            transform: rotate(0deg);
+            animation-name: run;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+
+        }
+
+        #minute {
+            width: 160px;
+            height: 13px;
+            transform-origin: 10px 7px;
+            position: absolute;
+            top: 344px;
+            margin-left: 190px;
+            background-color: blue;
+            animation-name: run;
+            animation-duration: 10s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+
+        }
+
+        #hour {
+            width: 100px;
+            height: 13px;
+            transform-origin: 10px 7px;
+            position: absolute;
+            top: 344px;
+            margin-left: 190px;
+            background-color: gray;
+            animation-name: run;
+            animation-duration: 20s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+
+        }
+
+        @keyframes run {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="circle" class="clock">
+            <div id="hour" class="clock">
+
+            </div>
+            <div id="minute" class="clock">
+
+            </div>
+            <div id="second" class="clock">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
