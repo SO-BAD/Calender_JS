@@ -10,17 +10,32 @@
         * {
             box-sizing: border-box;
             font-family: arial;
+            color: #0e3742;
+            text-align: center;
+            font-weight: bolder;
         }
 
         body {
             margin: 0;
-            background-color: #eee;
+            background-color: #d7f7ef;
         }
+
+        header span {
+            color: #fff;
+        }
+
+        .div span {
+            text-shadow: none;
+            color: #fff;
+            transition: 1s;
+        }
+
+
 
         main {
             width: 800px;
             margin: 50px auto;
-            background-color: pink;
+            background-color: #07252d;
             display: flex;
             flex-wrap: wrap;
             border-radius: 20px;
@@ -28,46 +43,105 @@
 
         header {
             flex-basis: 100%;
-            height: 50px;
-            border: 1px solid white;
+            height: 80px;
+            border-bottom: 1px solid #d7f7ef;
             display: flex;
             flex-direction: column;
-            text-align: center;
-            font-size: 30px;
-            font-weight: bolder;
-            line-height: 45px;
+            line-height: 75px;
+            font-size: 40px;
         }
 
         aside {
-            flex-basis: 220px;
+            flex-basis: 200px;
             height: 600px;
-            border: 1px solid white;
+            border-top: 1px solid #d7f7ef;
+            border-right: 1px solid #d7f7ef;
+            border-bottom: 1px solid #d7f7ef;
         }
 
+        .div1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 15px;
+        }
+
+        .clock {
+            width: 171px;
+            height: 171px;
+            border-radius: 50%;
+            background: rgb(161, 161, 161);
+        }
+
+        .hour {
+            width: 45px;
+            height: 11px;
+            position: absolute;
+            top: 225px;
+            margin-left: 80px;
+            transform-origin: 5px 6px;
+            background-color: hotpink;
+            transform: rotate(0deg);
+            /* animation: s 5s linear infinite; */
+        }
+
+        .minute {
+            position: absolute;
+            width: 70px;
+            height: 9px;
+            position: absolute;
+            top: 226px;
+            margin-left: 77px;
+            transform-origin: 8px 5px;
+            background-color: darkmagenta;
+            transform: rotate(0deg);
+            /* animation: s 10s linear infinite; */
+        }
+
+        .second {
+            position: absolute;
+            width: 90px;
+            height: 3px;
+            position: absolute;
+            top: 229px;
+            margin-left: 75px;
+            transform-origin: 10px 2px;
+            background-color: pink;
+            transform: rotate(0deg);
+            /* animation: s 2s linear infinite; */
+        }
         .div {
             height: 80px;
-            padding: 20px;
-            border: 1px solid black;
             font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
-        .font {
-            float: left;
+        
+        .div2 {
+            height: 160px;
+            border: 1px solid black;
         }
-
-        .add,.sub {
-            width: 50px;
-            height: 38px;
-            border: 1px solid grey;
-            float: right;
-        }
-
 
         section {
-            flex-basis: calc(100% - 220px);
-            border: 1px solid white;
+            flex-basis: calc(100% - 200px);
+            border-top: 1px solid white;
+            border-left: 1px solid white;
         }
     </style>
+
+    <script>
+        function clock_cal() {
+            let time = new Date();
+            let hour = time.getHours();
+            let minute = time.getMinutes();
+            let second = time.getSeconds();
+            document.getElementsByClassName("hour")[0].style.transform = "rotate(" + (hour * 30 + minute / 2 - 90) + "deg)";
+            document.getElementsByClassName("minute")[0].style.transform = "rotate(" + (minute * 6 + second / 10 - 90) + "deg)";
+            document.getElementsByClassName("second")[0].style.transform = "rotate(" + (second * 6 - 90) + "deg)";
+        }
+        var clock = setInterval(clock_cal, 1000);
+    </script>
 </head>
 
 <body>
@@ -76,27 +150,36 @@
             <span>Perpetual Calendar</span>
         </header>
         <aside>
-            <div class="div">
-                <span class="font">2021</span>
-                <div class="add"></div>
-                <div class="sub"></div>
-            </div>
-            <div class="div">
-                <span class="font">2021</span>
-                <div class="add"></div>
-                <div class="sub"></div>
+            <div class="div1">
+                <div class="clock">
+                    <div class="hour"></div>
+                    <div class="minute"></div>
+                    <div class="second"></div>
+                </div>
             </div>
 
             <div class="div">
                 <span class="font">2021</span>
-                <div class="add"></div>
-                <div class="sub"></div>
             </div>
+            <div class="div">
+                <span class="font">10</span>
+            </div>
+
+            <div class="div">
+                <span class="font">21</span>
+            </div>
+            <div class="div2"> 
+                <input type="number" value="2021">
+                <input type="number" value="11">
+                <input type="submit" value="查詢">
+            </div>
+
         </aside>
         <section>
         </section>
     </main>
-
 </body>
+<script>clock_cal();</script>
+
 
 </html>
