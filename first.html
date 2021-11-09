@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perpetual Calendar </title>
+    <title>Perpetual Calendar</title>
     <style>
         * {
             box-sizing: border-box;
@@ -110,6 +110,7 @@
             transform: rotate(0deg);
             /* animation: s 2s linear infinite; */
         }
+
         .div {
             height: 80px;
             font-size: 30px;
@@ -117,11 +118,41 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .div2 {
             height: 160px;
             border: 1px solid black;
+            display: flex;
+            flex-wrap: wrap;
+            padding-top: 20px;
+            padding-left: 20px;
         }
+
+        .div2 span {
+            width: 90px;
+            height: 30px;
+            color:brown;
+            margin-left: 10px;
+            line-height: 35px;
+        }
+
+        .div2 input {
+            width: 70px;
+            height: 30px;
+        }
+
+        /* input[type='number']:nth-child(1){
+            width: 80px;
+            height: 30px;
+        }
+        input[type='number']:nth-child(2){
+            width: 50px;
+            height: 30px;
+        }
+        input[type='submit']{
+            width: 80px;
+            height: 30px;
+        } */
 
         section {
             flex-basis: calc(100% - 200px);
@@ -141,6 +172,14 @@
             document.getElementsByClassName("second")[0].style.transform = "rotate(" + (second * 6 - 90) + "deg)";
         }
         var clock = setInterval(clock_cal, 1000);
+        function check() {
+            var ckY = document.getElementsByClassName("input")[0].value;
+            var ckM = document.getElementsByClassName("input")[1].value;
+
+            document.getElementsByClassName("hint")[0].innerText = (ckY <= 0) ? " > 0" :"";
+            document.getElementsByClassName("hint")[1].innerText = (ckM <= 0 || ckM >=12) ? "input:1-12" :"";
+            document.getElementsByClassName("input")[2].type = ((ckM <= 12 && ckM >= 1) && ckY > 0)? "submit":"button";
+        }
     </script>
 </head>
 
@@ -168,11 +207,12 @@
             <div class="div">
                 <span class="font">21</span>
             </div>
-            <div class="div2"> 
-                <input type="number" value="2021">
-                <input type="number" value="11">
-                <input type="submit" value="查詢">
-            </div>
+            <div class="div2">
+                <input type="number" value="2021" class="input" onkeyup="check()" onclick="check()"><span
+                    class="hint"></span>
+                <input type="number" value="11" class="input" onkeyup="check()" onclick="check()"><span
+                    class="hint"></span>
+                <input type="button" value="submit" class="input">
 
         </aside>
         <section>
