@@ -131,18 +131,20 @@
             transform: rotate(0deg);
             /* animation: s 2s linear infinite; */
         }
+
         @keyframes s {
-            0%{
+            0% {
                 transform: rotate(0deg);
             }
-            100%{
+
+            100% {
                 transform: rotate(360deg);
             }
         }
 
         .div {
             height: 100px;
-            font-size: 30px;
+            font-size: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -150,6 +152,7 @@
 
         .link {
             flex-basis: 20%;
+            font-size: 18px;
             text-decoration: none;
             transition: 1s;
         }
@@ -215,29 +218,50 @@
         td {
             width: 80px;
             height: 80px;
-            border: 1px solid #0e3742;
+            /* border: 1px solid #0e3742; */
+            border: 1px solid #07252d;
+            border-radius: 50%;
             transition: 0.2s;
         }
 
-        .gray a{
+        .gray a {
             color: #0e3742;
             text-decoration: none;
         }
 
-        .gray:hover a{
-            color:#fff;
+        .gray:hover a {
+            color: #fff;
         }
-        .white{
+
+        .white {
             color: white;
             font-size: 20px;
         }
 
         td:hover {
-            text-shadow: 0 0 5px #03bcf4,
-                0 0 5px #03bcf4,
-                0 0 5px #03bcf4,
-                0 0 5px #03bcf4;
-            border: 1px solid #fff;
+            animation: o 1.8s linear infinite;
+        }
+
+        @keyframes o {
+
+            0%,
+            100% {
+                border: 1px solid #07252d;
+                text-shadow: none;
+                box-shadow:none;
+            }
+
+            50% {
+                border: 1px solid #fff;
+                text-shadow: 0 0 5px #03bcf4,
+                    0 0 5px #03bcf4,
+                    0 0 5px #03bcf4,
+                    0 0 5px #03bcf4;
+                box-shadow: 0 0 5px #03bcf4,
+                    0 0 5px #03bcf4,
+                    0 0 5px #03bcf4,
+                    0 0 5px #03bcf4;
+            }
         }
     </style>
 
@@ -309,8 +333,8 @@ if (isset($_GET['month'])) {
             <span style="--i:17;">r</span>
         </header>
         <aside>
-            
-        
+
+
 
             <div class="div">
                 <a href="index.php?year=<?= ($year - 1) ?>&month=<?= $month ?>" class="link">
@@ -364,7 +388,7 @@ if (isset($_GET['month'])) {
                 for ($j = 0; $j < 7; $j++) {
                     echo "<td";
                     if ((7 * $i + $j) < date("w", strtotime($da))) {
-                        echo " class ='gray'> "."<a href='index.php?year=".$year."&month=".($month - 1)."'>";
+                        echo " class ='gray'> " . "<a href='index.php?year=" . $year . "&month=" . ($month - 1) . "'>";
 
                         echo ((date("n", strtotime($da)) - 1) == 0) ? 12 : (date("n", strtotime($da)) - 1);
                         echo " / ";
@@ -375,9 +399,9 @@ if (isset($_GET['month'])) {
 
                             echo " class= 'white'>" .  ($i * 7 + $j - date("w", strtotime($da)) + 1);
                         } else {
-                            echo " class ='gray'>"."<a href='index.php?year=".$year."&month=".($month + 1)."'>";
+                            echo " class ='gray'>" . "<a href='index.php?year=" . $year . "&month=" . ($month + 1) . "'>";
                             echo (((date("n", strtotime($da)) + 1) % 12) == 0) ? 12 : ((date("n", strtotime($da)) + 1) % 12);
-                            echo " / " . $count."</a>";
+                            echo " / " . $count . "</a>";
                             $count++;
                         }
                     }
