@@ -11,7 +11,6 @@
             box-sizing: border-box;
             font-family: arial;
             /* color: #0e3742; */
-            color: #fff;
             text-align: center;
             font-weight: bolder;
         }
@@ -156,6 +155,7 @@
             font-size: 18px;
             text-decoration: none;
             transition: 1s;
+            color: #0e3742;
         }
 
         .link:hover {
@@ -256,16 +256,55 @@
         }
 
         #main {
-            width: 560px;
+            width: 580px;
             display: flex;
             flex-wrap: wrap;
-            align-content: flex-start;
+            justify-content: space-around;
+            line-height: 80px;
+            margin-left: 10px;
+        }
+
+        .main {
+            width: 580px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            line-height: 80px;
+            margin-left: 10px;
+        }
+
+        .day_div {
+            width: 80px;
+            height: 80px;
+            /* border: 1px solid #07252d; */
+            border: 1px solid #07252d;
+            color: white;
+            border-radius: 50%;
+            font-size: 20px;
         }
 
         .cal_div {
             width: 80px;
             height: 80px;
-            border: 1px solid pink;
+            margin-top: 3px;
+            /* border: 1px solid #07252d; */
+            border: 1px solid #07252d;
+            color: white;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+
+        .cal_div:hover {
+            animation: o 1.8s linear infinite;
+        }
+
+        .g {
+            color: #0e3742;
+            font-size: 16px;
+        }
+
+        .g:hover {
+            color: #fff;
         }
     </style>
 
@@ -286,6 +325,9 @@
         function date() {
             document.getElementsByClassName("font")[0].innerText = year;
             document.getElementsByClassName("font")[1].innerText = month + 1;
+            document.getElementsByTagName("input")[0].value = year;
+            document.getElementsByTagName("input")[1].value = month + 1;
+
         }
         function clock_cal() {
             let time = new Date();
@@ -335,36 +377,43 @@
         </header>
         <aside>
             <div class="div">
-                <a href="" class="link">
-                    < </a>
+                <div class="link" onclick="change(0)">
+                    < </div>
                         <span class="font"></span>
-                        <a href="" class="link">></a>
-            </div>
-            <div class="div">
-                <a href="" class="link">
-                    < </a>
-                        <span class="font"></span>
-                        <a href="" class="link">></a>
-            </div>
-            <div class="div2">
-                <input type="number" name="year" class="input" onkeyup="check()" onclick="check()"><span
-                    class="hint"></span>
-                <input type="number" name="month" class="input" onkeyup="check()" onclick="check()"><span
-                    class="hint"></span>
-                <input type="submit" value="submit" class="input">
-            </div>
-            <div class="div1">
-                <div class="clock">
-                    <div class="hour"></div>
-                    <div class="minute"></div>
-                    <div class="second"></div>
+                        <div class="link" onclick="change(1)">></div>
                 </div>
-            </div>
+                <div class="div">
+                    <div class="link" onclick="change(2)">
+                        < </div>
+                            <span class="font"></span>
+                            <div class="link" onclick="change(3)">></div>
+                    </div>
+                    <div class="div2">
+                        <input type="number" name="year" class="input" onkeyup="check()" onclick="check()"><span
+                            class="hint"></span>
+                        <input type="number" name="month" class="input" onkeyup="check()" onclick="check()"><span
+                            class="hint"></span>
+                        <input type="button" value="submit" class="input" onclick="selectDate()">
+                    </div>
+                    <div class="div1">
+                        <div class="clock">
+                            <div class="hour"></div>
+                            <div class="minute"></div>
+                            <div class="second"></div>
+                        </div>
+                    </div>
         </aside>
         <section>
-            <main id="main">
-
-            </main>
+            <div class="main">
+                <div class="day_div">Sun</div>
+                <div class="day_div">Mon</div>
+                <div class="day_div">Tues</div>
+                <div class="day_div">Wed</div>
+                <div class="day_div">Thur</div>
+                <div class="day_div">Fri</div>
+                <div class="day_div">Sat</div>
+            </div>
+            <div id="main"></div>
         </section>
     </main>
 </body>
@@ -372,14 +421,91 @@
     clock_cal();
     date();
     var main = document.getElementById("main");
+    var lastMonth = (month + 11) % 12 + 1;
+    var NextMonth = (month + 1) % 12 + 1;
     for (let i = 0; i < 6; i++) {
         for (let j = 0; j < 7; j++) {
             let createDiv = document.createElement("div");
-            createDiv.setAttribute("class", "cal_div");
-            main.appendChild(createDiv);
             let startDate = parseInt((7 * i + j) - firstday.getDay());
-            if (startDate >= 0 && startDate < daysOfmonth[month]) {
+            if (startDate < 0) {
+                createDiv.setAttribute("class", "cal_div g");
+                main.appendChild(createDiv);
+                document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = lastMonth + " / " + (daysOfmonth[month] + 7 * i + j - startDate);
+            } else if (startDate >= 0 && startDate < daysOfmonth[month]) {
+                createDiv.setAttribute("class", "cal_div");
+                main.appendChild(createDiv);
                 document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = startDate + 1;
+            } else {
+                createDiv.setAttribute("class", "cal_div g");
+                main.appendChild(createDiv);
+                document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = NextMonth + " / " + (startDate - daysOfmonth[month] + 1);
+            }
+        }
+    }
+
+
+    function change(i) {
+        switch (i) {
+            case 0:
+                year = year - 1;
+                break;
+            case 1:
+                year = year + 1;
+                break;
+            case 2:
+                year = (month == 0) ? year - 1 : year;
+                month = (month + 11) % 12;
+                break;
+            case 3:
+                year = (month == 11) ? year + 1 : year;
+                month = (month + 1) % 12;
+                break;
+        }
+        change_cal();
+    }
+
+    function selectDate() {
+        var y = parseInt(document.getElementsByTagName("input")[0].value);
+        var m = parseInt(document.getElementsByTagName("input")[1].value);
+        
+        if (y > 0 && (m > 0 && m < 13)) {
+            year = y;
+            month = m-1;
+            change_cal();
+        }
+    }
+
+    function change_cal() {
+        document.getElementsByClassName("font")[0].innerText = year;
+        document.getElementsByClassName("font")[1].innerText = month + 1;
+        document.getElementsByTagName("input")[0].value = year;
+        document.getElementsByTagName("input")[1].value = month + 1;
+
+        leap();
+        while (main.hasChildNodes()) {
+            main.removeChild(main.lastChild);
+        }
+
+        let lastMonth = (month + 11) % 12 + 1;
+        let NextMonth = (month + 1) % 12 + 1;
+        firstday = new Date(year, month, 1);
+        for (let i = 0; i < 6; i++) {
+            for (let j = 0; j < 7; j++) {
+                let createDiv = document.createElement("div");
+                let startDate = parseInt((7 * i + j) - firstday.getDay());
+                if (startDate < 0) {
+                    createDiv.setAttribute("class", "cal_div g");
+                    main.appendChild(createDiv);
+                    document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = lastMonth + " / " + (daysOfmonth[month] + 7 * i + j - startDate);
+                } else if (startDate >= 0 && startDate < daysOfmonth[month]) {
+                    createDiv.setAttribute("class", "cal_div");
+                    main.appendChild(createDiv);
+                    document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = startDate + 1;
+                } else {
+                    createDiv.setAttribute("class", "cal_div g");
+                    main.appendChild(createDiv);
+                    document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = NextMonth + " / " + (startDate - daysOfmonth[month] + 1);
+                }
             }
         }
     }
