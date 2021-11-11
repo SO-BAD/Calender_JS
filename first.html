@@ -20,17 +20,13 @@
             background-color: #d7f7ef;
         }
 
-        header span {
-            color: #fff;
-        }
+
 
         .div span {
             text-shadow: none;
             color: #fff;
             transition: 1s;
         }
-
-
 
         main {
             width: 800px;
@@ -46,9 +42,35 @@
             height: 80px;
             border-bottom: 1px solid #d7f7ef;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             line-height: 75px;
             font-size: 40px;
+        }
+
+        header span {
+            color: #fff;
+        }
+
+        header:hover span {
+            animation: animate 2s linear infinite;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        @keyframes animate {
+            0% {
+                text-shadow: none;
+            }
+
+            50% {
+                text-shadow: 0 0 5px #03bcf4,
+                    0 0 10px #03bcf4,
+                    0 0 20px #03bcf4,
+                    0 0 40px #03bcf4;
+            }
+
+            100% {
+                text-shadow: none;
+            }
         }
 
         aside {
@@ -56,7 +78,6 @@
             height: 600px;
             border-top: 1px solid #d7f7ef;
             border-right: 1px solid #d7f7ef;
-            border-bottom: 1px solid #d7f7ef;
         }
 
         .div1 {
@@ -70,17 +91,17 @@
             width: 171px;
             height: 171px;
             border-radius: 50%;
-            background: rgb(161, 161, 161);
+            background: rgb(255, 255, 255);
         }
 
         .hour {
             width: 45px;
-            height: 11px;
+            height: 5px;
             position: absolute;
-            top: 225px;
+            top: 228px;
             margin-left: 80px;
-            transform-origin: 5px 6px;
-            background-color: hotpink;
+            transform-origin: 5px 3px;
+            background-color: rgb(49, 49, 49);
             transform: rotate(0deg);
             /* animation: s 5s linear infinite; */
         }
@@ -88,12 +109,12 @@
         .minute {
             position: absolute;
             width: 70px;
-            height: 9px;
+            height: 5px;
             position: absolute;
-            top: 226px;
+            top: 228px;
             margin-left: 77px;
-            transform-origin: 8px 5px;
-            background-color: darkmagenta;
+            transform-origin: 8px 3px;
+            background-color: rgb(155, 154, 154);
             transform: rotate(0deg);
             /* animation: s 10s linear infinite; */
         }
@@ -106,7 +127,7 @@
             top: 229px;
             margin-left: 75px;
             transform-origin: 10px 2px;
-            background-color: pink;
+            background-color: rgb(122, 122, 122);
             transform: rotate(0deg);
             /* animation: s 2s linear infinite; */
         }
@@ -119,19 +140,44 @@
             align-items: center;
         }
 
+        .link {
+            flex-basis: 20%;
+            text-decoration: none;
+            transition: 2s;
+        }
+
+        .link:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #03bcf4,
+                0 0 5px #03bcf4,
+                0 0 5px #03bcf4,
+                0 0 5px #03bcf4;
+        }
+
+        .font {
+            flex-basis: 60%;
+        }
+        .font:hover {
+            text-shadow: 0 0 5px #03bcf4,
+                0 0 5px #03bcf4,
+                0 0 5px #03bcf4,
+                0 0 5px #03bcf4;
+        }
+
         .div2 {
             height: 160px;
-            border: 1px solid black;
             display: flex;
             flex-wrap: wrap;
             padding-top: 20px;
             padding-left: 20px;
+            margin-top: -1px;
+
         }
 
         .div2 span {
             width: 90px;
             height: 30px;
-            color:brown;
+            color: brown;
             margin-left: 10px;
             line-height: 35px;
         }
@@ -140,19 +186,6 @@
             width: 70px;
             height: 30px;
         }
-
-        /* input[type='number']:nth-child(1){
-            width: 80px;
-            height: 30px;
-        }
-        input[type='number']:nth-child(2){
-            width: 50px;
-            height: 30px;
-        }
-        input[type='submit']{
-            width: 80px;
-            height: 30px;
-        } */
 
         section {
             flex-basis: calc(100% - 200px);
@@ -176,17 +209,34 @@
             var ckY = document.getElementsByClassName("input")[0].value;
             var ckM = document.getElementsByClassName("input")[1].value;
 
-            document.getElementsByClassName("hint")[0].innerText = (ckY <= 0) ? " > 0" :"";
-            document.getElementsByClassName("hint")[1].innerText = (ckM <= 0 || ckM >=12) ? "input:1-12" :"";
-            document.getElementsByClassName("input")[2].type = ((ckM <= 12 && ckM >= 1) && ckY > 0)? "submit":"button";
+            document.getElementsByClassName("hint")[0].innerText = (ckY < 1) ? " input>0" : "";
+            document.getElementsByClassName("hint")[1].innerText = (ckM <= 0 || ckM > 12) ? "input:1-12" : "";
+            document.getElementsByClassName("input")[2].type = ((ckM <= 12 && ckM >= 1) && ckY > 0) ? "submit" : "button";
         }
+
     </script>
 </head>
 
 <body>
     <main>
         <header>
-            <span>Perpetual Calendar</span>
+            <span style="--i:1;">P</span>
+            <span style="--i:2;">e</span>
+            <span style="--i:3;">r</span>
+            <span style="--i:4;">p</span>
+            <span style="--i:5;">e</span>
+            <span style="--i:6;">t</span>
+            <span style="--i:7;">u</span>
+            <span style="--i:8;">a</span>
+            <span style="--i:9;">l</span>
+            <span style="--i:10;margin-left: 10px;">C</span>
+            <span style="--i:11;">a</span>
+            <span style="--i:12;">l</span>
+            <span style="--i:13;">e</span>
+            <span style="--i:14;">n</span>
+            <span style="--i:15;">d</span>
+            <span style="--i:16;">a</span>
+            <span style="--i:17;">r</span>
         </header>
         <aside>
             <div class="div1">
@@ -198,12 +248,17 @@
             </div>
 
             <div class="div">
-                <span class="font">2021</span>
+                <a href="" class="link">
+                    < </a>
+                        <span class="font">2021</span>
+                        <a href="" class="link">></a>
             </div>
             <div class="div">
-                <span class="font">10</span>
+                <a href="" class="link">
+                    < </a>
+                        <span class="font">10</span>
+                        <a href="" class="link">></a>
             </div>
-
             <div class="div">
                 <span class="font">21</span>
             </div>
@@ -214,8 +269,10 @@
                     class="hint"></span>
                 <input type="button" value="submit" class="input">
 
+            </div>
         </aside>
         <section>
+
         </section>
     </main>
 </body>
