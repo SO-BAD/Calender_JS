@@ -349,6 +349,8 @@
             document.getElementsByClassName("input")[2].type = ((ckM <= 12 && ckM >= 1) && ckY > 0) ? "submit" : "button";
         }
 
+        
+
     </script>
 </head>
 
@@ -429,21 +431,23 @@
             let startDate = parseInt((7 * i + j) - firstday.getDay());
             if (startDate < 0) {
                 createDiv.setAttribute("class", "cal_div g");
+                createDiv.setAttribute("onclick", "change(2)");
                 main.appendChild(createDiv);
-                document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = lastMonth + " / " + (daysOfmonth[month] + 7 * i + j - startDate);
+                document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = lastMonth + " / " + (daysOfmonth[(lastMonth-1)] + startDate+1);
             } else if (startDate >= 0 && startDate < daysOfmonth[month]) {
                 createDiv.setAttribute("class", "cal_div");
                 main.appendChild(createDiv);
                 document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = startDate + 1;
             } else {
                 createDiv.setAttribute("class", "cal_div g");
+                createDiv.setAttribute("onclick", "change(3)");
                 main.appendChild(createDiv);
                 document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = NextMonth + " / " + (startDate - daysOfmonth[month] + 1);
             }
         }
     }
-
-
+    
+    
     function change(i) {
         switch (i) {
             case 0:
@@ -495,14 +499,16 @@
                 let startDate = parseInt((7 * i + j) - firstday.getDay());
                 if (startDate < 0) {
                     createDiv.setAttribute("class", "cal_div g");
+                    createDiv.setAttribute("onclick", "change(2)");
                     main.appendChild(createDiv);
-                    document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = lastMonth + " / " + (daysOfmonth[month] + 7 * i + j - startDate);
+                    document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = lastMonth + " / " + (daysOfmonth[(lastMonth-1)] +  startDate+1);
                 } else if (startDate >= 0 && startDate < daysOfmonth[month]) {
                     createDiv.setAttribute("class", "cal_div");
                     main.appendChild(createDiv);
                     document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = startDate + 1;
                 } else {
                     createDiv.setAttribute("class", "cal_div g");
+                    createDiv.setAttribute("onclick", "change(3)");
                     main.appendChild(createDiv);
                     document.getElementsByClassName("cal_div")[(7 * i + j)].innerText = NextMonth + " / " + (startDate - daysOfmonth[month] + 1);
                 }
