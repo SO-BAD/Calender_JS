@@ -39,19 +39,25 @@
         .monthDiv:hover {
             box-shadow: 0 0 10px #ccc;
         }
-        td{
+
+        td {
             width: 45px;
             height: 45px;
             text-align: center;
-            color:white;
+            color: white;
             font-weight: bolder;
         }
     </style>
 </head>
 <?php
-        $year  = 2021;
-        $month = 1;
+$year = date("Y");
+$month = date("m");
+$month_day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+if (date("L", strtotime($da)) == 1) {
+    $month_day[1] = 29;
+}
 ?>
+
 <body>
     <?php
     include "nav.php";
@@ -59,7 +65,7 @@
     <main>
 
         <?php
-
+        $month = 1;
         for ($i = 0; $i < 12; $i++) {
 
             echo "<div class = 'monthDiv'><table>";
@@ -68,7 +74,7 @@
                 if ($x == 0) {
                     echo "<td colspan ='7'>$year-$month</td>";
                     $month++;
-                }else if( $x ==1){
+                } else if ($x == 1) {
                     echo "<td>Sun</td>";
                     echo "<td>Mon</td>";
                     echo "<td>Thus</td>";
@@ -76,7 +82,7 @@
                     echo "<td>Tues</td>";
                     echo "<td>Fri</td>";
                     echo "<td>Sat</td>";
-                }else {
+                } else {
                     for ($y = 0; $y < 7; $y++) {
                         echo "<td></td>";
                     }
