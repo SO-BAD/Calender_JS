@@ -36,8 +36,8 @@
             flex-wrap: wrap;
             border-radius: 20px;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3),
-            5px 5px 10px rgba(0, 0, 0, 0.3),
-            5px 5px 20px rgba(0, 0, 0, 0.3);
+                5px 5px 10px rgba(0, 0, 0, 0.3),
+                5px 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         header {
@@ -316,7 +316,7 @@ if (isset($_GET['month'])) {
 
 <body>
     <?php
-        include "./nav.php";
+    include "nav.php";
     ?>
     <main>
         <header>
@@ -409,7 +409,7 @@ if (isset($_GET['month'])) {
                         echo " / " . $count . "</a>";
                         $count++;
                     }
-                    
+
                     echo "</td>";
                 }
                 echo "</tr>";

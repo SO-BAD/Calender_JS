@@ -4,7 +4,7 @@
         height: 60px;
         position: fixed;
         top:0px;
-        background-color: indianred;
+        background-color: #07252d;
         display: flex;
         justify-content: center;
     }
@@ -23,7 +23,7 @@
 </style>
 <header class="menu_back">
     <div class ="menu">
-        <a href=""></a>
-        <a href=""></a>
+        <a href="index.php?year=<?= ($year) ?>&month=<?= ($month)?>"></a>
+        <a href="year.php?year=<?= ($year) ?>&month=1"></a>
     </div>
 </header>
