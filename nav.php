@@ -24,6 +24,6 @@
 <header class="menu_back">
     <div class ="menu">
         <a href="index.php?year=<?= ($year) ?>&month=<?= ($month)?>"></a>
-        <a href="year.php?year=<?= ($year) ?>&month=1"></a>
+        <a href="year.php?year=<?= ($year) ?>"></a>
     </div>
 </header>
