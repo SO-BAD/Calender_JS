@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perpetual Calendar</title>
+    <link rel="stylesheet" href="all.css">
     <style>
         * {
             box-sizing: border-box;
@@ -293,7 +294,7 @@
 
 <?php
 date_default_timezone_set('Asia/Taipei');
-if (isset($_GET['month'])) {
+if (isset($_GET['month'])&&$_GET['year'] > 0) {
     $year =  $_GET['year'];
     $month = $_GET['month'];
     if ($month == 13) {
